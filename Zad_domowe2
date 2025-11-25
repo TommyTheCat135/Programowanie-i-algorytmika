@@ -1,0 +1,42 @@
+def p_na_dziesietny(n,p):
+    n_dec = int(n, p)
+    return n_dec
+'''
+    liczba_dec = 0
+    o = input("Podaj liczbę n:\n").strip().upper()  # .upper() zamienia litery na wielkie
+    u = int(input("Podaj podstawę systemu p w jakim zapisano liczbę n:\n"))
+
+    dlugosc = len(o)
+    for i, cyfra in enumerate(o):
+        # Konwersja cyfry/litery na wartość liczbową
+        if cyfra.isdigit():
+            wartosc = int(cyfra)
+        else:
+            wartosc = ord(cyfra) - ord('A') + 10   #ord zwraca kody ASCII danych liter 
+
+        liczba_dec += wartosc * (u ** (dlugosc - i - 1))
+
+    print(liczba_dec)
+'''
+def z_dziesietnego_na_k(n_dec):
+    if n_dec == 0:
+        return "0"
+
+    cyfry = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F"]
+    wynik = " "
+    k = int(input("Podaj docelową podstawę k:\n")); print()
+
+    while n_dec > 0:
+        reszta = n_dec % k
+        wynik = cyfry[reszta] + wynik
+        n_dec //= k
+
+    return wynik
+
+n = input("Podaj liczbę n:\n").strip().upper()
+p = int(input("Podaj podstawę p:\n"))
+
+print(f"Wynik:\n{z_dziesietnego_na_k(p_na_dziesietny(n,p))}")
+
+
+
