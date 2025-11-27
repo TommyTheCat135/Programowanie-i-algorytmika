@@ -1,0 +1,43 @@
+#!/usr/bin/env python3
+
+from random import randint
+'''L6_C
+#Zad 1
+def McC(n):   #a)
+	if n > 100:
+		return n - 10
+	return McC(McC(n + 11))
+	
+def Ack(m, n):
+	if (m == 0): return n + 1;
+	if (m > 0 and n == 0): return Ack(m -1, 1);
+	if (m > 0 and n > 0): return Ack(m - 1, Ack(m, n - 1));
+'''	
+#Zad 2
+def nwd(a, b):
+	if (b == 0 and a != 0): return a;
+	if (a == 0 and b != 0): return b;
+	if (b > 0 and a > 0): return nwd(b, a % b);
+
+def main(n):
+	'''liczby = [randint(1, 50) for _ in range(n)]
+	print(liczby)
+	wynik = 0                                  # [1, 2, nwd , 5 , 99]
+	while (len(liczby) > 1):
+		wynik = NWD(liczby[0], liczby[1])
+		print(wynik, liczby[0], liczby[1])
+		liczby.insert(2, wynik)
+		liczby = liczby[2:]
+	return wynik'''
+	
+def nwd_iter(lista):
+	x = nwd(lista[0], lista[1])
+	for i in lista[2:]:
+		x = nwd(x, i)
+	return x
+
+n = int(input("n = "))
+lista = [randint(1, 100) for _ in range(n)]
+print(nwd_iter(lista))
+
+	
