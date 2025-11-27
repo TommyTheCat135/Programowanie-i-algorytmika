@@ -1,0 +1,46 @@
+#!/usr/bin/env python3
+def rek(n):
+    if n == 1:       #Zad 3 a)
+        return 1
+    return n**2 + rek(n - 1)
+
+
+def sziter(n):      #zad 3 b)
+    w = 1
+    for i in range(2, n + 1):
+        w += i ** 2
+    return w
+
+
+#zad3 c)
+def suman(n):
+    return (n*(n + 1)*(2*n + 1)) // 6
+
+
+
+#ZAD 8
+slowo = "kajak"
+stos = [i for i in slowo] #stos = list(slowo)
+kolejka = [i for i in slowo]
+
+print(stos)
+print(kolejka)
+                         #dokoncz tak zeby sprawdzal do polowy slowa
+zs = stos.pop()
+zk = kolejka.pop(0)
+print(zs, zk)
+print(stos)
+print(kolejka)
+
+
+
+
+
+
+
+
+
+
+
+#print(int(suman(3)))
+#print(sziter(3))
