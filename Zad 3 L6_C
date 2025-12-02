@@ -26,8 +26,18 @@ kolejka = [i for i in slowo]
 print(stos)
 print(kolejka)
                          #dokoncz tak zeby sprawdzal do polowy slowa
-zs = stos.pop()
-zk = kolejka.pop(0)
+while len(stos) > 1:
+    zs = stos.pop()
+    zk = kolejka.pop(0)
+    if zs != zk:
+        print("Tekst nie jest palindromem")
+        stos = ["a"]
+    else:
+        if len(stos) == 1:
+            if zs = zk:
+                print("Tekst nie jest palindromem")
+                stos = ["a"]
+            
 print(zs, zk)
 print(stos)
 print(kolejka)
