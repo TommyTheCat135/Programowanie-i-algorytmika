@@ -35,16 +35,14 @@ while len(stos) > 1:
     else:
         if len(stos) == 1:
             zs = stos.pop()
-            zk = kolejka.pop(0)
-            if zs = zk:
-                print("Tekst jest palindromem")
+            zk = kolejka.pop(0)   
+            if zs == zk:
+                print(f"Słowo {slowo} jest palindromem")
             else:
-                print("Tekst jest palindromem")
+                print(f"Słowo {slowo} nie jest palindromem")
                 
             
-print(zs, zk)
-print(stos)
-print(kolejka)
+
 
 
 
