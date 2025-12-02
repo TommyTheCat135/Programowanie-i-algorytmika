@@ -42,8 +42,18 @@ while len(stos) > 1:
                 print(f"Słowo {slowo} nie jest palindromem")
                 
             
-
-
+#ZAD 8 ALE TAK JAK POWINNO BYC
+def palindrom(n):
+	stos = [i for i in n]
+	kolejka = [i for i in n]
+	
+	for i in range(0, len(stos) // 2):    #sprawdzamy do polowy tak jak mialo byc
+		if stos.pop() != kolejka.pop(0):
+			return False
+	return True
+	
+n = input("Tekst:")
+print(palindrom(n))
 
 
 
