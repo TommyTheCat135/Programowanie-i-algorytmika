@@ -1,0 +1,17 @@
+#Zad 10 problem Flawiusza wyliczanka		
+def Flawiusz():
+	n = 10
+	k = 3
+	lista = list(range(1, n + 1))
+	index = 0
+	while len(lista) > 1:
+		for _ in range(1, k):
+			if (index < len(lista) - 1): index += 1;
+			else: index = 0;
+		print("usuwa index:", index, "liczba:", lista[index]);
+		del lista[index]
+		print("lista:", lista)
+	return lista[0]
+		
+			
+print(f"Zostanie ziomek {Flawiusz()}")
