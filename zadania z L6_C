@@ -17,7 +17,7 @@ def suman(n):
     return (n*(n + 1)*(2*n + 1)) // 6
 
 
-
+'''
 #ZAD 8
 slowo = "kajak"
 stos = [i for i in slowo] #stos = list(slowo)
@@ -40,7 +40,7 @@ while len(stos) > 1:
                 print(f"Słowo {slowo} jest palindromem")
             else:
                 print(f"Słowo {slowo} nie jest palindromem")
-                
+'''       
             
 #ZAD 8 ALE TAK JAK POWINNO BYC
 def palindrom(n):
@@ -56,6 +56,52 @@ n = input("Tekst:")
 print(palindrom(n))
 
 
+#Zad 9 (ONP)
+dane = [2, 7, "+", 3, "/", 14, 3, "-", 4, "*", "-", 2, "/"]
+
+stos = []
+print(dane)
+for x in dane:
+	if x == "+":
+		a = stos.pop()
+		b = stos.pop()
+		stos.append(b+a)
+	elif x == "-":
+		a = stos.pop()
+		b = stos.pop()
+		stos.append(b-a)
+	elif x == "*":
+		a = stos.pop()
+		b = stos.pop()
+		stos.append(b*a)
+	elif x == "/":
+		a = stos.pop()
+		b = stos.pop()
+		stos.append(b/a)
+	else:
+		stos.append(x)
+print(stos)
+'''
+
+
+			 
+#Zad 10 problem Flawiusza wyliczanka		
+def Flawiusz():
+	n = 10
+	k = 3
+	lista = list(range(1, n + 1))
+	index = 0
+	while len(lista) > 1:
+		for _ in range(1, k):
+			if (index < len(lista) - 1): index += 1;
+			else: index = 0;
+		print("usuwa index:", index, "liczba:", lista[index]);
+		del lista[index]
+		print("lista:", lista)
+	return lista[0]
+		
+			
+print(f"Zostanie ziomek {Flawiusz()}")
 
 
 
@@ -64,5 +110,6 @@ print(palindrom(n))
 
 
 
-#print(int(suman(3)))
-#print(sziter(3))
+
+
+
