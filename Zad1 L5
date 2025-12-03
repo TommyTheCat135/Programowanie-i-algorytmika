@@ -1,0 +1,24 @@
+#Zad 1                                        #plik tekstowy imiona.txt musi byc w tym samym katalogu(folderze)
+def czy_zenskie(imie):
+    return imie[-1] == "a"
+
+
+with open("imiona.txt", 'r', encoding="utf-8") as plik:
+    for linia in plik:
+        lista = linia.strip().split()
+
+print(lista)
+iz, im = 0, 0    #imiezenskie, imiemeskie
+with open("panie.txt", 'w') as panie, open("panowie.txt", 'w') as panowie:
+    for el in lista:
+        if czy_zenskie(el):
+            panie.write(el + ", ")
+            iz += 1
+        else:
+            panowie.write(el + ", ")
+            im += 1
+    panie.write("\n" + str(iz))
+    panowie.write("\n" + str(im))
+
+
+
