@@ -1,0 +1,86 @@
+#L6_C Zad 4-7
+
+'''
+#Zad 4
+def MinMaxRek(i, j):
+    print("Podlista", i, "", j)
+    if i == j:
+        Min, Max = i, j
+        print(x[Min], x[Max])
+    else:
+        if i + 1 == j:
+            if x[i] >= x[j]:
+                Min, Max = j, i
+            else:
+                Min, Max = i, j
+            print(x[Min], x[Max])
+        else:
+            k = (i + j) // 2
+            min1, max1 = MinMaxRek(i, k)
+            min2, max2 = MinMaxRek(k + 1, j)
+            if x[min1] <= x[min2]:
+                Min = min1
+            else:
+                Min = min2
+            print(x[Min])
+            if x[max1] >= x[max2]:
+                Max = max1
+            else:
+                Max = max2
+            print(x[Max])
+    return Min, Max
+
+
+# from random import *
+# n=int(input("Podaj liczbe elementów do przeszukania "))
+# zakres=int(input("Podaj zakres losowania "))
+# for i in range(n):
+#    x.append(int(randrange(zakres)))
+# print("Dane z wykładu")
+x = [4, 13, 3, 21, 7, 15, 11, 72, 2, 3]
+print(x)
+print("Indeksy minimum imaksimum to: ", MinMaxRek(0, len(x) - 1))
+# wynikiem jest krotka!
+'''
+
+#Zad 5
+
+def Scal(l, s, p):
+    i = l
+    j = s + 1
+    k = l
+    while (i <= s) and (j <= p):
+        if x[i] < x[j]:
+            pom[k] = x[i]
+            i = i + 1
+        else:
+            pom[k] = x[j]
+            j = j + 1
+        k = k + 1
+    while i <= s:
+        pom[k] = x[i]
+        k = k + 1
+        i = i + 1
+    while j <= p:
+        pom[k] = x[j]
+        j = j + 1
+        k = k + 1
+    x[l:p + 1] = pom[l:p + 1]
+
+
+def sortowanie_scalanie(pocz, kon):
+    if pocz < kon:
+        sr = (pocz + kon) // 2
+        sortowanie_scalanie(pocz, sr)
+        sortowanie_scalanie(sr + 1, kon)
+        Scal(pocz, sr, kon)
+
+
+x = [40, 13, 3, 21, 7, 15, 11, 72, 2, 3]
+print(x)
+temp = len(x) - 1
+pom = len(x) * [0]
+sortowanie_scalanie(0, temp)
+print(x)
+
+#Zad5
