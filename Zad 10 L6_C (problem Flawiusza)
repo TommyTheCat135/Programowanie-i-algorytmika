@@ -14,4 +14,4 @@ def Flawiusz():
 	return lista[0]
 		
 			
-print(f"Zostanie ziomek {Flawiusz()}")
+print(f"Zostanie {Flawiusz()}")
