@@ -1,0 +1,36 @@
+#Lista zad nr 7a  (L7)
+'''liczby = {0: "zero", 1: "jeden", 2: "dwa", 5: "pięć", 3: "trzy", 4: "cztery", 6: "sześć", 7: "siedem", 8: "osiem", 9: "dziewięć"}  #Zad 1
+for k, v in liczby.items():
+    print(k, v)
+
+#Zad 2
+slownik = {"Nil": "Egipt", "Wisła": "Polska", "Odra": "Niemcy"}  #a)
+for rzeka, kraj in slownik.items():
+    print(f"{rzeka} przepływa przez {kraj}")
+
+for rzeka in slownik:  #b)
+    print(rzeka)
+
+for i in slownik.values():  #c)
+    print(i)
+
+rzeka = input("podaj rzekę: ")
+if rzeka in slownik:
+    print(slownik[rzeka])
+else:
+    kraj = input("Podaj kraj")
+    slownik[rzeka] = kraj
+print(slownik)
+'''
+
+#Zad 6
+liczby = input("Podaj liczby")
+lista = liczby.split()
+#print(lista)                   #BEDZIE NA KOLOSIE ANALOGICZNE ZAD
+slownik = dict()
+for x in lista:
+    if x[-1] in slownik:
+        slownik[x[-1]].append(x)
+    else:
+        slownik[x[-1]] = [x]
+print(slownik)
