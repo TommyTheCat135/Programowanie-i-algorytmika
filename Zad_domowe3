@@ -1,0 +1,46 @@
+#def wynik_zly(wynik):
+    #zakres = list(range(140, 441))
+   # if wynik not in zakres:
+
+with open("dane.txt", "r") as d:
+    line = d.readline().strip()       
+    nieprawidlowe = 0
+    wszyscy = 0
+    #zakres = list(range(140, 441))
+    for line in d: #enumerate(d):
+        print(repr(line))
+        wszyscy += 1
+        #frag = line[-4:-1]
+        #print("DEBUG:", repr(frag))
+        wynik = line[-4:-1]
+        if wynik.isdigit():    #dzieki temu -1 na koncu eliminujemy /n z konca i mozna na int zamienic
+            liczba = int(wynik)
+        if not (140 <= liczba <= 440):
+            nieprawidlowe += 1
+        else:
+            continue
+
+    print()
+    print(f"Wszystkich pacjentów jest {wszyscy}")
+    print(f"Liczba osób z nieprawidłowym wynikiem badania to {nieprawidlowe}\n")
+    #nieprawidlowe = int(nieprawidlowe)
+    procent = (nieprawidlowe / wszyscy) * 100
+    print(f"Osoby te stanowią {procent:.2f}% całej badanej grupy")
+
+'''
+with open("dane.txt", "r") as d:
+    nieprawidlowe = 0
+    wszyscy = 0
+    for line in d:
+        line = line.strip()
+        parts = line.split()
+    wynik = parts[-1]
+'''
+
+
+
+
+
+
+
+
