@@ -1,0 +1,79 @@
+#Zad 6
+'''
+liczby = input("Podaj liczby")
+lista = liczby.split()
+#print(lista)                   #BEDZIE NA KOLOSIE ANALOGICZNE ZAD
+slownik = dict()
+for x in lista:
+    if x[-1] in slownik:
+        slownik[x[-1]].append(x)
+    else:
+        slownik[x[-1]] = [x]
+print(slownik)
+
+cyfry = "0123456789"
+for cyfra in cyfry:
+    if cyfra not in slownik.values():
+        print(f"Cyfra {cyfra} nie występuje w żadnej z liczb")
+
+#wersja prawowita z odczytem z pliku
+with open("liczby.txt", "r") as liczby:
+    lista = [x.strip() for x in liczby]
+print(lista)
+slownik = dict()
+for v in lista:
+    if v[-1] in slownik:
+        slownik[v[-1]].append(v)
+    else:
+        slownik[v[-1]] = [v]
+print(slownik)
+for i in range(0, 10):
+    if str(i) not in slownik:
+        print(i)
+
+#Zad 5
+with open("slowa.txt", "r") as liczby:
+    lista = [x.strip() for x in liczby]
+print(lista)
+slownik = dict()
+for v in lista:
+    if v[0] in slownik:
+        slownik[v[0]].append(v)
+    else:
+        slownik[v[0]] = [v]
+print(slownik)
+dl = dict()
+for k, v in slownik.items():
+    dl[k] = len(v)
+print(dl)
+print(max(dl.values()))
+m  = max(dl.values())
+for k, v in dl.items():
+    if v == m:
+        print(k)
+        print(f"Litera na którą zaczyna sie najwiecej slow to {k} a liczba slow zaczynajacych sie na te litere wynosi {m} ")
+'''
+#Zad3
+slownik = {"Olek": [8], "Kuba": [4, 12], "Konstanty": [3, 7], "Igor": [8, 19], "Gabriel": [4, 2, 0]}
+print(slownik)
+
+lista = []
+for i in slownik.values():
+    for j in i:
+        lista.append(j)
+print(lista)
+
+slownik2 = dict()
+for i in lista:
+    if i in slownik2:
+        slownik2[i] += 1
+    else:
+        slownik2[i] = 1
+print(slownik2)
+
+print(max(slownik2.values()))
+m  = max(slownik2.values())
+for k, v in slownik2.items():    #zrob zad 4 i zad domowe przed kolosem koniecznie
+    if v == m:
+        print(k)  #liczby najczesciej wybierane jako ulubione (u nas 8 i 4 bo obydwie sa po 2 razy)
+
