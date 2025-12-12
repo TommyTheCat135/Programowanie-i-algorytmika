@@ -1,0 +1,5 @@
+osoby = [{"imię": "Grzegorz", "nazwisko": "Brzęczyszczykiewicz", "wiek": "42", "miasto": "Sierpc"}, {"imię": "Grzegorz", "nazwisko": "Kręciołek", "wiek": "15", "miasto": "Zawidz Kościelny"}, {"imię": "Grażyna", "nazwisko": "Januszewska", "wiek": "123", "miasto": "Płock"}]
+print(osoby)
+
+x = [slownik["nazwisko"] for slownik in osoby if slownik["imię"] == "Grzegorz"]
+print(x)
