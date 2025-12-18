@@ -1,0 +1,69 @@
+# L7 grafy
+'''
+#Zad 9
+graf = [[0, 1, 0 , 1, 1],                 
+		  [1, 0, 1, 0, 0],           #macierz sasiedztwa
+		  [0, 1, 0, 1, 1], 
+		  [1, 0, 1, 0, 0], 
+		  [1, 0, 1, 0, 0]]
+print(graf)                  
+                                         
+lista_sasiadow = {0: [1, 4], 
+				1: [0, 2, 3], 
+				2: [1, 4], 
+				3: [1, 4], 
+				4: [0, 2, 3]}
+print(lista_sasiadow)
+
+stopnie = dict()
+for numer, lista in lista_sasiadow.items():   #to my pisalismy na tablicy i jest wszystko git elegancko 
+	stopnie[numer] = len(lista)
+print(stopnie)
+
+stopnie2 = dict()
+i = 0
+for wiersz in graf:
+	stopnie2[i] = sum(wiersz)    #tu cos chyba nie tak jest z tym zliczaniem XD
+	i += 1
+print(stopnie2)
+
+print(max(stopnie2.values()))
+maxd = max(stopnie2.values())
+for w, d in stopnie2.items():      #d od degree (stopien)
+	if d == maxd:
+		print("wierzcholki:", w)
+
+#Zad 10 
+def czy_ma_cykl_Eulera(graf):         #graf ma cykl eulera wtedy i tylko wtedy gdy wszystkie wierzcholki maja stopnie parzyste
+	for wiersz in graf:
+		if sum(wiersz) % 2 == 1:
+			return False
+	return True
+print(czy_ma_cykl_Eulera(graf))       #i uwaga: przez kazda krawedz mozemy przejsc dokladnie raz, ALE przez wierzcholki mozemy przechodzic wielokrotnie
+
+
+def czy_ma_droge_Eulera(graf):       
+	nieparzyste = 0
+	for wiersz in graf:               #graf ma droge eulera jak sa DOKLADNIE 2 wierzcholki stopnia nieparzystego (bo jak jest jeden to automatycznie jest tez drugi)
+		if sum(wiersz) % 2 == 1:
+			nieparzyste += 1
+	if nieparzyste > 2:
+		return False
+	return True
+print(czy_ma_droge_Eulera(graf))
+'''
+                                                 #koniecznie zajrzyj do prezentacji z wykladu o tych cyklach drogach itd zeby to lepiej zrozumiec (zeby to w ogole zrozumiec XD)
+#Zad 8
+with open("danein.txt", "r") as d:
+	#for d1, d2 in zip(d1, d2):
+		#d1, d2 = int(d1), int(d2)
+	pierwsza = d.readline()
+	slownik = dict()
+	for linia in d:            #ignorujemy pierwsza linie
+		u, v = linia.split()   #pamietaj ze to sa wtedy napisy !
+		if u in slownik:
+			slownik[u].append(v)
+		else:
+			slownik[u] = [v]               #w tym sortowaniu topologicznym to jest graf skierowany
+	print(slownik)
+	#sproboj dokonczyc posortowac czy tez douczyc sie o co chodfzi w tym algorytmie (po swietach kolejna lista...)
