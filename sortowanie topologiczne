@@ -9,13 +9,13 @@ def sortowanie_topologiczne(sasiedzi):   #sasiedzi to po prostu lista sasiadow c
         
         odwiedzone.add(wierzcholek)
         
-        # Odwiedź wszystkich sąsiadów
+        
         for sasiad in sasiedzi[wierzcholek]:
             odwiedz(sasiad)
         
         wynik.insert(0, wierzcholek)
     
-    # Odwiedź wszystkie wierzchołki
+    
     for wierzcholek in sasiedzi:
         odwiedz(wierzcholek)
     
