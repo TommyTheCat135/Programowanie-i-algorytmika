@@ -1,17 +1,7 @@
-def sortowanie_topologiczne(wierzcholki, krawedzie):
-
-    #wierzcholki: lista wierzchołków (np. [0, 1, 2, 3, 4])
-    #krawedzie: lista krotek (od, do) - np. [(0, 1), (0, 2)]
+def sortowanie_topologiczne(sasiedzi):   #sasiedzi to po prostu lista sasiadow czyli w gruncie rzeczy slownik ktory podajemy jako argument 
     
-    sasiedzi = {}
-    for w in wierzcholki:
-        sasiedzi[w] = []
-    
-    for od, do in krawedzie:
-        sasiedzi[od].append(do)
-  
     odwiedzone = set()
-    wynik = []  
+    wynik = []
     
     def odwiedz(wierzcholek):
         if wierzcholek in odwiedzone:
@@ -19,13 +9,28 @@ def sortowanie_topologiczne(wierzcholki, krawedzie):
         
         odwiedzone.add(wierzcholek)
         
+        # Odwiedź wszystkich sąsiadów
         for sasiad in sasiedzi[wierzcholek]:
             odwiedz(sasiad)
         
         wynik.insert(0, wierzcholek)
     
-
-    for w in wierzcholki:
-        odwiedz(w)
+    # Odwiedź wszystkie wierzchołki
+    for wierzcholek in sasiedzi:
+        odwiedz(wierzcholek)
     
     return wynik
+
+
+
+# Przykład:
+graf = {
+    0: [],
+    1: [],
+    2: [3],
+    3: [1],
+    4: [0, 1],
+    5: [0, 2]
+}
+
+print("Kolejność:", sortowanie_topologiczne(graf))
