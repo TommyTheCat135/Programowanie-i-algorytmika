@@ -1,0 +1,31 @@
+def sortowanie_topologiczne(wierzcholki, krawedzie):
+
+    #wierzcholki: lista wierzchołków (np. [0, 1, 2, 3, 4])
+    #krawedzie: lista krotek (od, do) - np. [(0, 1), (0, 2)]
+    
+    sasiedzi = {}
+    for w in wierzcholki:
+        sasiedzi[w] = []
+    
+    for od, do in krawedzie:
+        sasiedzi[od].append(do)
+  
+    odwiedzone = set()
+    wynik = []  
+    
+    def odwiedz(wierzcholek):
+        if wierzcholek in odwiedzone:
+            return
+        
+        odwiedzone.add(wierzcholek)
+        
+        for sasiad in sasiedzi[wierzcholek]:
+            odwiedz(sasiad)
+        
+        wynik.insert(0, wierzcholek)
+    
+
+    for w in wierzcholki:
+        odwiedz(w)
+    
+    return wynik
