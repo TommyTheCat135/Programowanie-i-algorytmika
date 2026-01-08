@@ -1,0 +1,63 @@
+'''
+L8 / L7b
+'''
+'''
+from random import random, randrange
+
+#Zad 1
+A = {"Ania", "Marcin", "Andrzej", "Jurek" , "Iwona", "Ewa"}
+B = {"Ania", "Iwona", "Kacper", "Oliwia"}
+C = {"Iwona", "Ewa", "Olaf"}
+D = A.union(B, C)
+print(D)
+
+E = A & B & C
+print(E)
+
+F = A - (B & C)
+print(F)
+
+G = (A - B) | (B - A)
+print(G)
+
+#Zad 3
+n = 50000
+czy_w_kolku = 0
+for _ in range(n):
+	a = random()
+	b = random()
+	if (a*a + b*b <= 1):
+		czy_w_kolku += 1
+wynik = (czy_w_kolku * 4) / n
+print(wynik)
+                              #metoda iteracyjna uzyskiwania przyblizen umiec na kolokwium (algorytmy numeryczne takie jak ta metoda monte carlo, wyklad 8)
+#Zad 4
+eps = 0.011
+a = 25
+x0 = randrange(1, a) 
+
+for i in range(100):
+	x1 = (x0 + (a / x0)) / 2
+	if abs(x1 - x0) <= eps:
+		print(x1)
+		break
+	x0 = x1
+'''
+#Zad 5
+a = -1
+b = 2
+epsilon = 1
+def f(x):
+	return x
+
+x = (a + b) / 2
+if f(x) == 0:
+	print(x)
+if f(a)*f(x) < 0:
+	b = x
+else:
+	a = x                     
+if abs(a - b) <= epsilon:
+	x = (a + b) / 2
+	print(x)
+                        #sproboj dokonczyc (trzeba dodac petle while
