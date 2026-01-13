@@ -60,4 +60,28 @@ else:
 if abs(a - b) <= epsilon:
 	x = (a + b) / 2
 	print(x)
-                        #sproboj dokonczyc (trzeba dodac petle while
+#sproboj dokonczyc (trzeba dodac petle while
+
+a = -1
+b = 2
+epsilon = 0.001
+
+def f(x):
+	return x + 2
+
+while abs(b - a) > epsilon:
+    x = (a + b) / 2
+
+    if f(x) == 0:
+        print(x)
+        break
+
+    if f(a) * f(x) < 0:  # zero jest między a i x
+        b = x
+    else:  # zero jest między x i b
+        a = x
+
+x = (a + b) / 2
+print(f"Przybliżone rozwiązanie: {x}")
+print(f"f({x}) = {f(x)}")
+
