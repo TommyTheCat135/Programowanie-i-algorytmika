@@ -82,6 +82,6 @@ while abs(b - a) > epsilon:
         a = x
 
 x = (a + b) / 2
-print(f"Przybliżone rozwiązanie: {x}")
-print(f"f({x}) = {f(x)}")
+print(x)
+
 
