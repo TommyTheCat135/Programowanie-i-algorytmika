@@ -1,0 +1,32 @@
+#Zad 1
+banknoty = [1, 2, 5, 10, 20, 50, 100, 200, 500]
+banknoty.reverse()
+do_wydania = 27
+wydane = []
+print(do_wydania)
+for banknot in banknoty:
+	ile_razy = do_wydania // banknot
+	for _ in range(0, ile_razy):
+		wydane.append(banknot)
+	do_wydania -= banknot * ile_razy
+print(wydane)
+
+#Zad 2
+k = 300
+w = [100, 58, 64, 42, 71, 89, 100, 64, 55, 250, 180, 190]
+w.sort()
+kajak = 0
+while len(w) >= 2:
+	if w[0] + w[-1] <= k:
+		kajak += 1
+		w.pop()
+		w.pop(0)
+	else:
+		kajak += 1
+		w.pop()
+if len(w) == 1:
+	kajak += 1
+	w.pop()
+print(kajak, w)
+
+#Zad 3   #i nad 4 sie zastanow
