@@ -1,0 +1,61 @@
+from collections import deque
+
+with open("danein.txt", "r") as dane:
+    pierwsza = dane.readline()
+    slownik = dict()
+    wierzcholki = set()
+
+    for linia in dane:
+        u, v = linia.split()
+        wierzcholki.update([u, v])
+        if u in slownik:
+            slownik[u].append(v)
+        else:
+            slownik[u] = [v]
+    #najmniejszy = min(wierzcholki)
+    #najwiekszy = max(wierzcholki)
+    wierzcholki = sorted(list(wierzcholki))
+
+print(slownik)
+print()
+#print(wierzcholki)
+
+def sortowanie_topologiczne(slownik):  #slownik to lista sasiadow
+    lista_sasiadow = slownik
+    stopnie = [0] * len(wierzcholki)
+
+    for wierzcholek in lista_sasiadow:
+        for sasiad in lista_sasiadow[wierzcholek]:
+            stopnie[int(sasiad)] += 1
+    #print(stopnie)
+            
+    kolejka = deque([w for w in range(len(stopnie)) if stopnie[w] == 0])
+    wynik = []
+
+    while kolejka:
+        aktualny = str(kolejka.popleft())  #aktualnie badany wierzcholek
+        wynik.append(aktualny)
+        if aktualny in lista_sasiadow:  #dwojki nie ma w kluczach tamtego slownika wiec trzeba dac tego ifa dla zabezpieczenia
+            for sasiad in lista_sasiadow[aktualny]:
+                stopnie[int(sasiad)] -= 1
+
+                if stopnie[int(sasiad)] == 0:
+                    kolejka.appendleft(sasiad)
+
+    return wynik
+
+print("Kolejność:", sortowanie_topologiczne(slownik))
+
+
+
+
+    
+
+
+
+
+
+
+
+
+
