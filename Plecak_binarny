@@ -22,7 +22,7 @@ def etap_pierwszy(wagi, wartosci, pojemnosc):  #najpierw musimy zapakowac plecak
     return dp
 
 
-def etap_drugi(dp, wagi, pojemnosc):  #mamy zapakowany plecak, pora wiec zaczac szukac maksymalnej wartosci oraz dowiedziec sie jakie przedmioty ukradlismy i ile razy
+def etap_drugi(dp, wagi, pojemnosc):  #mamy zapakowany plecak, pora wiec dowiedziec sie jaka jest maksymalna wartosc oraz jakie przedmioty ukradlismy i ile razy
  
     n = len(wagi)
     wybrane_przedmioty = []
