@@ -1,0 +1,41 @@
+def etap_pierwszy(wagi, wartosci, pojemnosc):  #najpierw musimy zapakowac plecak
+  
+    n = len(wagi)
+
+    #tworzę tablicę przedmiot x waga (pierwszy wiersz i kolumna zerowe wiec dodajemy jeden do n oraz pojemnosci)
+    dp = [[0 for _ in range(pojemnosc + 1)] for _ in range(n + 1)]
+
+    #algorytm wypełniania tablicy
+    for i in range(1, n + 1):
+        for w in range(pojemnosc + 1):
+            waga_przedmiotu = wagi[i - 1]
+            wartosc_przedmiotu = wartosci[i - 1]
+
+            #przypadek 1: nie bierzemy i-tego przedmiotu
+            dp[i][w] = dp[i - 1][w]
+
+            #przypadek 2: bierzemy i-ty przedmiot o ile miesci sie w plecaku
+            if waga_przedmiotu <= w:
+                wartosc_z_przedmiotem = dp[i - 1][w - waga_przedmiotu] + wartosc_przedmiotu
+                dp[i][w] = max(dp[i][w], wartosc_z_przedmiotem)
+
+    return dp
+
+
+def etap_drugi(dp, wagi, pojemnosc):  #mamy zapakowany plecak, pora wiec zaczac szukac maksymalnej wartosci oraz dowiedziec sie jakie przedmioty ukradlismy i ile razy
+ 
+    n = len(wagi)
+    wybrane_przedmioty = []
+    w = pojemnosc
+
+    max_wartosc = dp[n][pojemnosc]
+
+    #iterujemy po komorkach tablichy od konca w poszukiwaniu przedmiotow ktore wybralismy
+    for i in range(n, 0, -1):
+        if dp[i][w] != dp[i - 1][w]:  #sprawdzamy czy wartość się zmieniła, jezeli tak to oznacza ze wzięliśmy i-ty przedmiot
+            wybrane_przedmioty.append(i)  
+            w -= wagi[i - 1]  #zmniejszamy dostępną pojemność o wagę przedmiotu ktory wybralismy
+
+    wybrane_przedmioty.reverse()   #na koniec pozostaje tylko odwrocic liste wybranych przedmiotow poniewaz przeszukiwalismy tablice od tylu
+
+    return max_wartosc, wybrane_przedmioty
