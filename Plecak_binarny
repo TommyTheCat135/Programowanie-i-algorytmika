@@ -2,7 +2,7 @@ def etap_pierwszy(wagi, wartosci, pojemnosc):  #najpierw musimy zapakowac plecak
   
     n = len(wagi)
 
-    #tworzę tablicę przedmiot x waga (pierwszy wiersz i kolumna zerowe wiec dodajemy jeden do n oraz pojemnosci)
+    #tworzę tablicę [przedmiot x waga] (pierwszy wiersz i kolumna zerowe wiec dodajemy jeden do n oraz pojemnosci)
     dp = [[0 for _ in range(pojemnosc + 1)] for _ in range(n + 1)]
 
     #algorytm wypełniania tablicy
