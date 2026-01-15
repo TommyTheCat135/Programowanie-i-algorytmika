@@ -1,0 +1,51 @@
+#Zad 4 L9a najdluzszy wspolny podciag
+def nwp(w1, w2):
+	print(w1, w2)
+	m = len(w1)
+	n = len(w2)
+	tabelka = []
+	for i in range(n + 1):
+		tabelka.append([0 for j in range(m + 1)])  #tabelka.append([0] * (m + 1))
+	for k in range(1, n + 1):    #k to wiersz
+		for q in range(1, m + 1):  #q to kolumna
+			if w1[q-1] == w2[k-1]:
+				tabelka[k][q] = tabelka[k-1][q-1] + 1
+			else:
+				tabelka[k][q] = max(tabelka[k-1][q], tabelka[k][q-1])
+			
+	return tabelka[-1][-1]
+
+print(nwp('samoloto', 'lato'))
+
+#Zad 6 nieszachujecy sie hetmani
+def hetmani(n):
+	h = [-1 for i in range(n)]
+	
+	def sprawdz(het, idx):
+		if idx == n:
+			print(het)
+			return
+		
+		#h = het[:]  #funkcja pracuje na kopii danych
+		for i in range(n):
+			h = het[:]
+			szach = False
+			for k in h[:idx]:
+				if k == i:
+					szach = True
+			if szach:
+				continue
+			
+			for ki in range(idx):
+				k = h[ki]
+				if abs(idx - ki) == abs(i - k):
+					szach = True
+			if szach:
+				continue
+			
+			h[idx] = i
+			sprawdz(h, idx + 1)
+			
+	sprawdz(h, 0)
+		
+print(hetmani(8))
