@@ -1,0 +1,86 @@
+#znajdowanie najszybszej drogi wyjscia z labiryntu metodą przeszukiwania z nawrotami
+lab = [[0, '#', 0,  0,  0,  0,  0, '#', 0],
+       [0,  0, '#', 0,  0,  0,  0,  0,  0],
+ [     '#', 0,  0,  0,  0, '#','#', 0,  0],
+       [0,  0, '#','#','#', 0,  0,  0,  0],
+       [0,  0,  0,  0,  0,  0,  0,  0,  0],
+       [0,  0,  0,  0,  0,  0, '#', 0,  0]]
+
+for wiersz in lab:
+    for j in range(len(wiersz)):
+        if wiersz[j] == '#':
+            continue
+        wiersz[j] = -1
+
+start = (1, 0)
+koniec = (4, 7)
+#sx, sy = start
+#kx, ky = koniec
+#lab[sx][sy] = 0 
+#for w in lab:
+    #print(w)
+#print()
+
+#lx, ly = sx, sy - 1  #lewo
+#px, py = sx, sy + 1  #prawo
+#gx, gy = sx - 1, sy  #gora
+#dx, dy = sx + 1, sy  #dol
+
+wiersze = len(lab)
+kolumny = len(lab[0])
+
+kierunki = [(-1, 0), (1, 0), (0, -1), (0, 1)]
+
+kolejka = [(start[0], start[1], 0)]
+odwiedzone = {start}
+poprzednicy = {start: None}
+znaleziono = False
+
+while kolejka:
+    x, y, dystans = kolejka.pop(0)
+
+    if (x, y) == koniec: 
+        znaleziono = True
+        break
+
+    for dx, dy in kierunki:      #przechodzimy po labiryncie w danych kierunkach
+        nx, ny = x + dx, y + dy
+
+        if 0 <= nx < wiersze and 0 <= ny < kolumny:
+            if lab[nx][ny] != '#' and (nx, ny) not in odwiedzone:
+                odwiedzone.add((nx, ny))
+                poprzednicy[(nx, ny)] = (x, y)
+                kolejka.append((nx, ny, dystans + 1))
+                #print(kolejka)
+
+if znaleziono:
+    sciezka = []
+    aktualny = koniec
+    while aktualny is not None:
+        sciezka.append(aktualny)
+        aktualny = poprzednicy[aktualny]
+    sciezka.reverse()                      #szlismy od tylu wiec sciezka jest od tylu 
+
+    print(f"Ścieżka: {sciezka}")
+    print(f"Długość ścieżki: {len(sciezka) - 1} kroków")
+
+    for w in range(wiersze):      #wizualizacja sciezki
+        for k in range(kolumny):
+            if (w, k) in sciezka:
+                if (w, k) == start:
+                    print('S', end=' ')
+                elif (w, k) == koniec:
+                    print('K', end=' ')
+                else:
+                    print('*', end=' ')
+            elif lab[w][k] == '#':
+                print('#', end=' ')
+            else:
+                print('.', end=' ')
+        print()
+else:
+    print("Nie znaleziono ścieżki, zostajesz uwięziony w labiryncie juz na zawsze\n")
+    print("=" * 10); print("GAME OVER"); print("=" * 10)
+
+
+
