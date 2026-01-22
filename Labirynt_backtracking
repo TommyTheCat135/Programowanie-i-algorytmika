@@ -1,0 +1,70 @@
+#znajdowanie drogi wyjscia z labiryntu metodą backtrackingu (DFS z nawrotami)
+lab = [[0, '#', 0, 0, 0, 0, 0, '#', 0],
+       [0, 0, '#', 0, 0, 0, 0, 0, 0],
+       ['#', 0, 0, 0, 0, '#', '#', 0, 0],
+       [0, 0, '#', '#', '#', 0, 0, 0, 0],
+       [0, 0, 0, 0, 0, 0, 0, 0, 0],
+       [0, 0, 0, 0, 0, 0, '#', 0, 0]]
+
+start = (1, 0)
+koniec = (4, 7)
+
+wiersze = len(lab)
+kolumny = len(lab[0])
+
+kierunki = [(-1, 0), (1, 0), (0, -1), (0, 1)]  # góra, dół, lewo, prawo
+
+odwiedzone = set()
+sciezka = []
+
+def backtrack(x, y):
+    # Czy dotarliśmy do końca?
+    if (x, y) == koniec:
+        sciezka.append((x, y))
+        return True
+    
+    # Oznaczamy jako odwiedzone
+    odwiedzone.add((x, y))
+    sciezka.append((x, y))
+    
+    # Próbujemy wszystkie kierunki
+    for dx, dy in kierunki:
+        nx, ny = x + dx, y + dy
+        
+        # Sprawdzamy czy można iść w tym kierunku
+        if (0 <= nx < wiersze and 0 <= ny < kolumny and 
+            lab[nx][ny] != '#' and (nx, ny) not in odwiedzone):
+            
+            # Rekursywnie idziemy dalej
+            if backtrack(nx, ny):
+                return True  # Znaleźliśmy wyjście!
+    
+    # BACKTRACKING - cofamy się! (ślepy zaułek)
+    sciezka.pop()
+    # Uwaga: NIE usuwamy z odwiedzonych, żeby nie sprawdzać tej samej ścieżki dwa razy
+    
+    return False
+
+# Uruchamiamy algorytm
+if backtrack(start[0], start[1]):
+    print(f"Znaleziono wyjście!")
+    print(f"Ścieżka: {sciezka}")
+    print(f"Długość ścieżki: {len(sciezka) - 1} kroków")
+
+    for w in range(wiersze):
+        for k in range(kolumny):
+            if (w, k) in sciezka:
+                if (w, k) == start:
+                    print('S', end=' ')
+                elif (w, k) == koniec:
+                    print('E', end=' ')
+                else:
+                    print('*', end=' ')
+            elif lab[w][k] == '#':
+                print('#', end=' ')
+            else:
+                print('.', end=' ')
+        print()
+else:
+    print("Nie znaleziono ścieżki!")
+```
