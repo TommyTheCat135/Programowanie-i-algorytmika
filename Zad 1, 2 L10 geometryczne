@@ -1,0 +1,44 @@
+#Zad 1                #L10
+def det(p, q, r):         
+	xp, yp = p
+	xq, yq = q
+	xr, yr = r
+	return xr*(yp - yq) - xq*(yp - yr) + xp*(yq - yr)
+	
+def sgn(a):
+	if a > 0:
+		return 1
+	if a < 0:
+		return -1
+	return 0
+
+p = (1, 1)
+q = (10, 1)
+r = (6, 5)
+
+x = sgn(det(p, q, r))
+
+xp, yp = p
+xq, yq = q
+xr, yr = r
+
+if xp <= xr <= xq and yp <= yr <= yq and x == 0:
+	print("Punkt nalezy do odcinka")
+else:
+	print("Punkt nie nalezy do odcinka")
+
+#Zad 2	
+if det(p, q, r) > 0:
+	print("po lewej")   #po ktorej stronie prostej lezy punkt
+elif det(p, q, r) == 0:
+	print("jest wspolliniowy")
+else:
+	print("po prawej")
+
+
+
+
+
+
+print(det(p, q, r))
+print(sgn(det(p, q, r)))
