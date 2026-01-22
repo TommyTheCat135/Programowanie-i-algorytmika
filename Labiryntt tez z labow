@@ -1,0 +1,56 @@
+import numpy as np
+lista = [[0, '#', 0,  0,  0,  0,  0, '#', 0],
+       [0,  0, '#', 0,  0,  0,  0,  0,  0],
+ [     '#', 0,  0,  0,  0, '#','#', 0,  0],
+       [0,  0, '#','#','#', 0,  0,  0,  0],
+       [0,  0,  0,  0,  0,  0,  0,  0,  0],
+       [0,  0,  0,  0,  0,  0, '#', 0,  0]]
+
+s = (1, 0)
+k = (4, 7)
+
+sx, sy = s
+kx, ky = k
+
+lista[sx][sy] = 1
+lw = len(lista) - 1
+lk = len(lista[0]) - 1
+
+do_odwiedzenia = [s]  #to jest kolejka
+
+while lista[kx][ky] == 0:
+	x, y = do_odwiedzenia.pop(0)
+	sasiedzi = [
+			(x, y - 1), #lewo
+			(x, y + 1), #prawo
+			(x - 1, y), #gora
+			(x + 1, y)  #dol
+			]
+	for nx, ny in sasiedzi:
+		if 0 <= nx <= lw and 0 <= ny <= lk and lista[nx][ny] == 0:
+			do_odwiedzenia.append((nx, ny))
+			lista[nx][ny] = lista[x][y] + 1
+
+print(np.matrix(lista))
+print(lista[kx][ky] - 1)  #skoro od jedynki zaczelismy to trzeba odjac jeden od wyniku
+
+
+
+wartosc = lista[kx][ky]
+odpowiedz = [(kx, ky)]
+
+while wartosc > 1:
+	if 0 <= kx - 1 <= lw and lista[kx - 1][ky] == wartosc - 1:
+		kx = kx - 1
+	elif 0 <= kx + 1 <= lw and lista[kx + 1][ky] == wartosc - 1:
+		kx = kx + 1
+	if 0 <= kx - 1 <= lw and lista[kx][ky - 1] == wartosc - 1:        #to mozna zrobic tak jak masz w tej wersji BFS duzo prosciej mniej burdelu ale tutaj to w ogole zupelnie inna idea troche jest ale koniec koncow prostsze chyba bo bez slownikow zbiorow itd
+		ky = ky - 1
+	elif 0 <= kx + 1 <= lw and lista[kx][ky + 1] == wartosc - 1:
+		ky = ky + 1
+	
+	odpowiedz.append((kx,ky))
+	wartosc -= 1
+
+odpowiedz.reverse()
+print(odpowiedz)
