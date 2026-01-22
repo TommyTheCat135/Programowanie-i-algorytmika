@@ -1,0 +1,39 @@
+import numpy as np
+lista = [[0, '#', 0,  0,  0,  0,  0, '#', 0],
+       [0,  0, '#', 0,  0,  0,  0,  0,  0],
+ [     '#', 0,  0,  0,  0, '#','#', 0,  0],
+       [0,  0, '#','#','#', 0,  0,  0,  0],
+       [0,  0,  0,  0,  0,  0,  0,  0,  0],
+       [0,  0,  0,  0,  0,  0, '#', 0,  0]]
+
+s = (1, 0)
+k = (4, 7)
+
+sx, sy = s
+kx, ky = k
+
+lista[sx][sy] = 1
+lw = len(lista) - 1
+lk = len(lista[0]) - 1
+
+krok = 1
+
+while lista[kx][ky] == 0:
+	for x in range(len(lista)):
+		for y in range(len(lista[0])):
+			if lista[x][y] == krok:
+				sasiedzi = [
+					(x, y - 1), #lewo
+					(x, y + 1), #prawo
+					(x - 1, y), #gora
+					(x + 1, y)  #dol
+					]
+				
+				for nx, ny in sasiedzi:
+					if 0 <= nx <= lw and 0 <= ny <= lk:
+						if lista[nx][ny] == 0:
+							lista[nx][ny] = krok + 1
+	krok += 1
+
+print(np.matrix(lista))
+print(lista[kx][ky] - 1)  #skoro od jedynki zaczelismy to trzeba odjac jeden od wyniku
