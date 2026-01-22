@@ -1,4 +1,4 @@
-#znajdowanie najszybszej drogi wyjscia z labiryntu metodą przeszukiwania z nawrotami
+#tu nie ma backtrackingu
 lab = [[0, '#', 0,  0,  0,  0,  0, '#', 0],
        [0,  0, '#', 0,  0,  0,  0,  0,  0],
  [     '#', 0,  0,  0,  0, '#','#', 0,  0],
