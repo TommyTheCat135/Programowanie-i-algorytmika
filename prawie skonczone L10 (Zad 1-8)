@@ -1,0 +1,122 @@
+#Zad 1              #L10
+def det(p, q, r):         
+	xp, yp = p
+	xq, yq = q
+	xr, yr = r
+	return xr*(yp - yq) - xq*(yp - yr) + xp*(yq - yr)
+	
+def sgn(a):
+	if a > 0:
+		return 1
+	if a < 0:
+		return -1
+	return 0
+
+#p = (1, 1)
+#q = (10, 1)
+#r = (6, 5)
+'''
+x = sgn(det(p, q, r))
+
+xp, yp = p
+xq, yq = q
+xr, yr = r
+
+if xp <= xr <= xq and yp <= yr <= yq and x == 0:
+	print("Punkt nalezy do odcinka")
+else:
+	print("Punkt nie nalezy do odcinka")
+
+#Zad 2	
+print("ZAD 2")
+if det(p, q, r) > 0:
+	print("po lewej")   #po ktorej stronie prostej lezy punkt
+elif det(p, q, r) == 0:
+	print("jest wspolliniowy")
+else:
+	print("po prawej")
+
+
+print(det(p, q, r))
+print(sgn(det(p, q, r)))
+
+#Zad 3
+print("ZAD 3")
+s = (0, 3)
+r = (0, -4)
+p = (-4, 0)
+q = (4, 0)
+print(sgn(det(p, q, r)) != sgn(det(p, q, s)) and sgn(det(r, s, p)) != sgn(det(r, s, q)))
+'''
+#Zad 5
+def punkt(p, q, r):
+	x = sgn(det(p, q, r))
+	
+	xp, yp = p
+	xq, yq = q
+	xr, yr = r
+	return xp <= xr <= xq and yp <= yr <= yq and x == 0
+
+s = (0, 3)
+a = (0, 1)
+b = (1, 0)
+c = (0, -2)
+r = (0, -4)
+p = (-4, 0)
+q = (4, 0)
+print(punkt(p, q, a))
+
+def lewa(p, q, s, a):
+	return sgn(det(p, q, a)) == sgn(det(q, s, a)) == sgn(det(s, p, a))
+print(lewa(p, q, s, a))
+
+def tr(p, q, s, a):  #czy punkt wewnatrz trojkata (pierwszy if) czy na ktoryms z rogow
+	'''
+	if lewa(p, q, s, a):
+		return True
+	if punkt(p, q, a):
+		return True
+	if punkt(q, s, a):
+		return True
+	if punkt(s, p, a):
+		return True
+	return False
+	'''
+	return lewa(p, q, s, a) or punkt(p, q, a) or punkt(q, s, a) or punkt(s, p, a)
+	
+print(tr(p, q, s, a))
+print()
+
+#Zad 6
+#print("ZAD 6")
+w = [(-1, 4), (-4, 0), (-3, 3), (2, -3), (4, 0), (4, 3)]
+v = (-1, 4) 
+t = []  #lista do triangulacji
+
+for i in range(1, len(w) - 1):        #triangulacja
+	t.append((v, w[i], w[i + 1]))    
+	print(t[-1])
+
+a = (0, 0)
+for p, q, s in t:
+	if tr(p, q, s, a):
+		print(True)
+		break
+else:
+	print(False)
+
+#Zad 8
+def alfa(p):
+	xp, yp = p
+	dp = abs(xp) + abs(yp)
+	if yp >= 0 and xp >= 0:
+		return yp / dp
+	if xp <= 0 and yp >= 0:
+		return 2 - (yp / dp)
+	if xp <= 0 and yp <= 0:
+		return 2 + (abs(yp) / dp)
+	if xp >= 0 and yp <= 0:
+		return 4 - (abs(yp) / dp)
+print(alfa(q), alfa(b), alfa(c), alfa(p))
+print(w)
+print(sorted(w, key = alfa))
